@@ -1,7 +1,11 @@
 package main;
 
+import bd.AwsBD;
 import bd.SqlBD;
+import bd.PostgressBD;
+
 import logica.BdManager;
+
 import objetos.EnvioInternacional;
 import objetos.EnvioMunicipal;
 import objetos.IEnvio;
@@ -9,7 +13,9 @@ import objetos.IEnvio;
 public class Principal {
 
     public static void main(String[] args) {
-        BdManager manager = new BdManager(new SqlBD());
+        //BdManager manager = new BdManager(new AwsBD());
+        //BdManager manager = new BdManager(new SqlBD());
+        BdManager manager = new BdManager(new PostgressBD());
 
         IEnvio[] envios = {
                 new EnvioMunicipal(1, 5000),
@@ -35,7 +41,7 @@ public class Principal {
 
     public static void imprimirTiempoDeEnvio(IEnvio[] envios) {
         for (IEnvio envio : envios) {
-            System.out.println("Tiempo envio " + envio.getTiempoEntrega() + " horas");
+            System.out.println("Tiempo de envío: " + envio.getTiempoEntrega() + " horas");
         }
     }
 }
